@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TypeScript Type Erasure Visualizer
+
+A Next.js application that visually demonstrates how TypeScript is compiled into JavaScript through the process of "type erasure."
+
+## Features
+
+- **Step-by-Step Visualization**: See exactly how TypeScript removes type annotations in stages:
+  - Removing Interfaces
+  - Removing Parameter Types
+  - Removing Return Types
+  - Removing Variable Types
+- **Interactive Editor**: Powered by Shiki, allowing you to write your own TypeScript code and see it transformed in real-time.
+- **AST Parsing**: Utilizes the official TypeScript Compiler API to safely parse and strip types without breaking the underlying JavaScript logic.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org) (App Router)
+- **Language**: TypeScript
+- **Syntax Highlighting**: [Shiki](https://shiki.style/)
+- **AST Parsing**: TypeScript Compiler API
+- **Styling**: Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   # or yarn / pnpm / bun
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How it works
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The core logic lives in `src/lib/transformer.ts`. It takes your TypeScript code, generates an Abstract Syntax Tree (AST) using the TypeScript Compiler API, and sequentially removes specific TypeScript-only nodes (like `InterfaceDeclaration` and type annotations on parameters, returns, and variables) until pure JavaScript remains.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
